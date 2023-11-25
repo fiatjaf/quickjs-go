@@ -1,4 +1,4 @@
-module github.com/buke/quickjs-go
+module github.com/fiatjaf/quickjs-go
 
 go 1.18
 

@@ -1,11 +1,11 @@
 # quickjs-go
 English | [简体中文](README_zh-cn.md)
 
-[![Test](https://github.com/buke/quickjs-go/workflows/Test/badge.svg)](https://github.com/buke/quickjs-go/actions?query=workflow%3ATest)
-[![codecov](https://codecov.io/gh/buke/quickjs-go/branch/main/graph/badge.svg?token=DW5RGD01AG)](https://codecov.io/gh/buke/quickjs-go)
-[![Go Report Card](https://goreportcard.com/badge/github.com/buke/quickjs-go)](https://goreportcard.com/report/github.com/buke/quickjs-go)
-[![GoDoc](https://pkg.go.dev/badge/github.com/buke/quickjs-go?status.svg)](https://pkg.go.dev/github.com/buke/quickjs-go?tab=doc)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbuke%2Fquickjs-go.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbuke%2Fquickjs-go?ref=badge_shield)
+[![Test](https://github.com/fiatjaf/quickjs-go/workflows/Test/badge.svg)](https://github.com/fiatjaf/quickjs-go/actions?query=workflow%3ATest)
+[![codecov](https://codecov.io/gh/fiatjaf/quickjs-go/branch/main/graph/badge.svg?token=DW5RGD01AG)](https://codecov.io/gh/fiatjaf/quickjs-go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/fiatjaf/quickjs-go)](https://goreportcard.com/report/github.com/fiatjaf/quickjs-go)
+[![GoDoc](https://pkg.go.dev/badge/github.com/fiatjaf/quickjs-go?status.svg)](https://pkg.go.dev/github.com/fiatjaf/quickjs-go?tab=doc)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ffiatjaf%2Fquickjs-go.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Ffiatjaf%2Fquickjs-go?ref=badge_shield)
 
 Go bindings to QuickJS: a fast, small, and embeddable ES2020 JavaScript interpreter.
 
@@ -28,7 +28,7 @@ Go bindings to QuickJS: a fast, small, and embeddable ES2020 JavaScript interpre
 ## Usage
 
 ```go
-import "github.com/buke/quickjs-go"
+import "github.com/fiatjaf/quickjs-go"
 ```
 
 ### Run a script
@@ -37,8 +37,8 @@ package main
 
 import (
 	"fmt"
-    
-	"github.com/buke/quickjs-go"
+
+	"github.com/fiatjaf/quickjs-go"
 )
 
 func main() {
@@ -65,8 +65,8 @@ package main
 
 import (
 	"fmt"
-    
-	"github.com/buke/quickjs-go"
+
+	"github.com/fiatjaf/quickjs-go"
 )
 
 func main() {
@@ -95,7 +95,7 @@ func main() {
 ### Bind Go Funtion to Javascript async/sync function
 ```go
 package main
-import "github.com/buke/quickjs-go"
+import "github.com/fiatjaf/quickjs-go"
 
 func main() {
     // Create a new runtime
@@ -162,8 +162,8 @@ package main
 
 import (
 	"fmt"
-    
-	"github.com/buke/quickjs-go"
+
+	"github.com/fiatjaf/quickjs-go"
 )
 
 func main() {
@@ -192,8 +192,8 @@ package main
 
 import (
 	"fmt"
-    
-	"github.com/buke/quickjs-go"
+
+	"github.com/fiatjaf/quickjs-go"
 )
 
 func main() {
@@ -219,7 +219,7 @@ func main() {
     // Compile the script to bytecode
     buf, _ := ctx.Compile(jsStr)
 
-    // Create a new runtime 
+    // Create a new runtime
     rt2 := quickjs.NewRuntime()
     defer rt2.Close()
 
@@ -239,8 +239,8 @@ package main
 
 import (
 	"fmt"
-    
-	"github.com/buke/quickjs-go"
+
+	"github.com/fiatjaf/quickjs-go"
 )
 
 func main() {
@@ -262,13 +262,13 @@ func main() {
 ```
 
 ## Documentation
-Go Reference & more examples: https://pkg.go.dev/github.com/buke/quickjs-go
+Go Reference & more examples: https://pkg.go.dev/github.com/fiatjaf/quickjs-go
 
 ## License
 [MIT](./LICENSE)
 
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbuke%2Fquickjs-go.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbuke%2Fquickjs-go?ref=badge_large)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ffiatjaf%2Fquickjs-go.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Ffiatjaf%2Fquickjs-go?ref=badge_large)
 
-## Related Projects 
+## Related Projects
 * https://github.com/buke/quickjs-go-polyfill

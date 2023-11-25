@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/buke/quickjs-go"
+	"github.com/fiatjaf/quickjs-go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

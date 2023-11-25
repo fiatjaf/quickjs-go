@@ -1,11 +1,11 @@
 # quickjs-go
 [English](README.md) | 简体中文
 
-[![Test](https://github.com/buke/quickjs-go/workflows/Test/badge.svg)](https://github.com/buke/quickjs-go/actions?query=workflow%3ATest)
-[![codecov](https://codecov.io/gh/buke/quickjs-go/branch/main/graph/badge.svg?token=DW5RGD01AG)](https://codecov.io/gh/buke/quickjs-go)
-[![Go Report Card](https://goreportcard.com/badge/github.com/buke/quickjs-go)](https://goreportcard.com/report/github.com/buke/quickjs-go)
-[![GoDoc](https://pkg.go.dev/badge/github.com/buke/quickjs-go?status.svg)](https://pkg.go.dev/github.com/buke/quickjs-go?tab=doc)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbuke%2Fquickjs-go.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbuke%2Fquickjs-go?ref=badge_shield)
+[![Test](https://github.com/fiatjaf/quickjs-go/workflows/Test/badge.svg)](https://github.com/fiatjaf/quickjs-go/actions?query=workflow%3ATest)
+[![codecov](https://codecov.io/gh/fiatjaf/quickjs-go/branch/main/graph/badge.svg?token=DW5RGD01AG)](https://codecov.io/gh/fiatjaf/quickjs-go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/fiatjaf/quickjs-go)](https://goreportcard.com/report/github.com/fiatjaf/quickjs-go)
+[![GoDoc](https://pkg.go.dev/badge/github.com/fiatjaf/quickjs-go?status.svg)](https://pkg.go.dev/github.com/fiatjaf/quickjs-go?tab=doc)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ffiatjaf%2Fquickjs-go.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Ffiatjaf%2Fquickjs-go?ref=badge_shield)
 
 Go 语言的QuickJS绑定库：快速、小型、可嵌入的ES2020 JavaScript解释器。
 
@@ -25,10 +25,10 @@ Go 语言的QuickJS绑定库：快速、小型、可嵌入的ES2020 JavaScript�
 4.  如果`Eval()` 或 `EvalFile()`返回了错误，可强制转换为`*quickjs.Error`以读取错误的堆栈信息。
 5. 如果你想在函数中返回参数，请在函数中复制参数。
 
-## 用法 
+## 用法
 
 ```go
-import "github.com/buke/quickjs-go"
+import "github.com/fiatjaf/quickjs-go"
 ```
 
 ### 执行javascript脚本
@@ -37,8 +37,8 @@ package main
 
 import (
 	"fmt"
-    
-	"github.com/buke/quickjs-go"
+
+	"github.com/fiatjaf/quickjs-go"
 )
 
 func main() {
@@ -65,8 +65,8 @@ package main
 
 import (
 	"fmt"
-    
-	"github.com/buke/quickjs-go"
+
+	"github.com/fiatjaf/quickjs-go"
 )
 
 func main() {
@@ -95,7 +95,7 @@ func main() {
 ### 函数绑定
 ```go
 package main
-import "github.com/buke/quickjs-go"
+import "github.com/fiatjaf/quickjs-go"
 
 func main() {
     // Create a new runtime
@@ -162,8 +162,8 @@ package main
 
 import (
 	"fmt"
-    
-	"github.com/buke/quickjs-go"
+
+	"github.com/fiatjaf/quickjs-go"
 )
 
 func main() {
@@ -192,8 +192,8 @@ package main
 
 import (
 	"fmt"
-    
-	"github.com/buke/quickjs-go"
+
+	"github.com/fiatjaf/quickjs-go"
 )
 
 func main() {
@@ -219,7 +219,7 @@ func main() {
     // Compile the script to bytecode
     buf, _ := ctx.Compile(jsStr)
 
-    // Create a new runtime 
+    // Create a new runtime
     rt2 := quickjs.NewRuntime()
     defer rt2.Close()
 
@@ -239,8 +239,8 @@ package main
 
 import (
 	"fmt"
-    
-	"github.com/buke/quickjs-go"
+
+	"github.com/fiatjaf/quickjs-go"
 )
 
 func main() {
@@ -262,13 +262,13 @@ func main() {
 ```
 
 ## 文档
-Go 语言文档和示例: https://pkg.go.dev/github.com/buke/quickjs-go
+Go 语言文档和示例: https://pkg.go.dev/github.com/fiatjaf/quickjs-go
 
 ## 协议
 [MIT](./LICENSE)
 
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbuke%2Fquickjs-go.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbuke%2Fquickjs-go?ref=badge_large)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ffiatjaf%2Fquickjs-go.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Ffiatjaf%2Fquickjs-go?ref=badge_large)
 
 ## 相关项目
 * https://github.com/buke/quickjs-go-polyfill
