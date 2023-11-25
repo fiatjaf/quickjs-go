@@ -1,5 +1,6 @@
 #include "_cgo_export.h"
 #include "quickjs.h"
+#include "quickjs-libc.h"
 
 
 JSValue JS_NewNull() { return JS_NULL; }
@@ -26,4 +27,8 @@ int interruptHandler(JSRuntime *rt, void *handlerArgs) {
 
 void SetInterruptHandler(JSRuntime *rt, void *handlerArgs){
 	JS_SetInterruptHandler(rt, &interruptHandler, handlerArgs);
+}
+
+void SetModuleLoader(JSRuntime *rt) {
+	JS_SetModuleLoaderFunc(rt, NULL, js_module_loader, NULL);
 }

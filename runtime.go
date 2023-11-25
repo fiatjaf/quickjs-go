@@ -4,9 +4,9 @@ package quickjs
 #include "bridge.h"
 */
 import "C"
+
 import (
 	"io"
-	"runtime"
 	"time"
 )
 
@@ -18,8 +18,8 @@ type Runtime struct {
 
 // NewRuntime creates a new quickjs runtime.
 func NewRuntime() Runtime {
-	runtime.LockOSThread() // prevent multiple quickjs runtime from being created
 	rt := Runtime{ref: C.JS_NewRuntime(), loop: NewLoop()}
+	C.SetModuleLoader(rt.ref)
 	C.JS_SetCanBlock(rt.ref, C.int(1))
 	return rt
 }

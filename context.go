@@ -169,7 +169,7 @@ func (ctx *Context) Function(fn func(ctx *Context, this Value, args []Value) Val
 
 // AsyncFunction returns a js async function value with given function template.
 func (ctx *Context) AsyncFunction(asyncFn func(ctx *Context, this Value, promise Value, args []Value) Value) Value {
-	val := ctx.eval(`(invokeGoFunction, id) => async function(...arguments) { 
+	val := ctx.eval(`(invokeGoFunction, id) => async function(...arguments) {
 		let resolve, reject;
 		const promise = new Promise((resolve_, reject_) => {
 		  resolve = resolve_;
@@ -177,8 +177,8 @@ func (ctx *Context) AsyncFunction(asyncFn func(ctx *Context, this Value, promise
 		});
 		promise.resolve = resolve;
 		promise.reject = reject;
-		
-		invokeGoFunction.call(this, id, promise,  ...arguments); 
+
+		invokeGoFunction.call(this, id, promise,  ...arguments);
 		return await promise;
 	}`)
 	defer val.Free()
@@ -253,7 +253,7 @@ func (ctx *Context) Eval(code string) (Value, error) { return ctx.EvalFile(code,
 // EvalFile returns a js value with given code and filename.
 // Need call Free() `quickjs.Value`'s returned by `Eval()` and `EvalFile()` and `EvalBytecode()`.
 func (ctx *Context) EvalFile(code, filename string) (Value, error) {
-	val := ctx.evalFile(code, filename, C.JS_EVAL_TYPE_GLOBAL)
+	val := ctx.evalFile(code, filename, C.JS_EVAL_TYPE_MODULE)
 	if val.IsException() {
 		return val, ctx.Exception()
 	}
