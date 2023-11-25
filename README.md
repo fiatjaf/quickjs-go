@@ -269,6 +269,3 @@ Go Reference & more examples: https://pkg.go.dev/github.com/fiatjaf/quickjs-go
 
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ffiatjaf%2Fquickjs-go.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Ffiatjaf%2Fquickjs-go?ref=badge_large)
-
-## Related Projects
-* https://github.com/buke/quickjs-go-polyfill
