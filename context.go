@@ -19,7 +19,10 @@ type Context struct {
 	globals    *Value
 	proxy      *Value
 	asyncProxy *Value
+	modules    map[string][]byte
 }
+
+var contexts = make(map[*C.JSContext]*Context)
 
 // Free will free context and all associated objects.
 func (ctx *Context) Close() {
@@ -36,6 +39,7 @@ func (ctx *Context) Close() {
 	}
 
 	C.JS_FreeContext(ctx.ref)
+	delete(contexts, ctx.ref)
 }
 
 // Null return a null value.
@@ -244,6 +248,11 @@ func (ctx *Context) Invoke(fn Value, this Value, args ...Value) Value {
 		return Value{ctx: ctx, ref: C.JS_Call(ctx.ref, fn.ref, this.ref, 0, nil)}
 	}
 	return Value{ctx: ctx, ref: C.JS_Call(ctx.ref, fn.ref, this.ref, C.int(len(cargs)), &cargs[0])}
+}
+
+// RegisterModule register a module source code so it can be imported by others.
+func (ctx *Context) RegisterModule(name string, code []byte) {
+	ctx.modules[name] = code
 }
 
 // Eval returns a js value with given code.

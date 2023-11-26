@@ -1,7 +1,5 @@
 #include "_cgo_export.h"
 #include "quickjs.h"
-#include "quickjs-libc.h"
-
 
 JSValue JS_NewNull() { return JS_NULL; }
 JSValue JS_NewUndefined() { return JS_UNDEFINED; }
@@ -29,6 +27,37 @@ void SetInterruptHandler(JSRuntime *rt, void *handlerArgs){
 	JS_SetInterruptHandler(rt, &interruptHandler, handlerArgs);
 }
 
+JSModuleDef *module_loader(JSContext *ctx, const char *module_name, void *opaque) {
+    JSModuleDef *m;
+    size_t buf_len;
+    char *buf;
+    JSValue func_val;
+
+    /* get module code from the go side */
+    buf = goGetModule(ctx, &buf_len, module_name);
+    if (!buf) {
+        JS_ThrowReferenceError(ctx, "could not load module filename '%s'",
+                               module_name);
+        return NULL;
+    }
+
+    /* compile the module */
+    func_val = JS_Eval(ctx, buf, buf_len, module_name,
+                       JS_EVAL_TYPE_MODULE | JS_EVAL_FLAG_COMPILE_ONLY);
+
+    /* free module code buffer */
+    free(buf);
+
+    if (JS_IsException(func_val))
+        return NULL;
+    /* XXX: could propagate the exception */
+    // js_module_set_import_meta(ctx, func_val, TRUE, FALSE);
+    /* the module is already referenced, so we must free it */
+    m = JS_VALUE_GET_PTR(func_val);
+    JS_FreeValue(ctx, func_val);
+    return m;
+}
+
 void SetModuleLoader(JSRuntime *rt) {
-	JS_SetModuleLoaderFunc(rt, NULL, js_module_loader, NULL);
+	JS_SetModuleLoaderFunc(rt, NULL, module_loader, NULL);
 }

@@ -60,7 +60,10 @@ func (r Runtime) NewContext() *Context {
 	C.JS_AddIntrinsicOperators(ref)
 	C.JS_EnableBignumExt(ref, C.int(1))
 
-	return &Context{ref: ref, runtime: &r}
+	ctx := &Context{ref: ref, runtime: &r, modules: make(map[string][]byte)}
+	contexts[ref] = ctx
+
+	return ctx
 }
 
 // ExecutePendingJob will execute all pending jobs.

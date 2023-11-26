@@ -19,10 +19,12 @@ type funcEntry struct {
 	asyncFn func(ctx *Context, this Value, promise Value, args []Value) Value
 }
 
-var funcPtrLen int64
-var funcPtrLock sync.Mutex
-var funcPtrStore = make(map[int64]funcEntry)
-var funcPtrClassID C.JSClassID
+var (
+	funcPtrLen     int64
+	funcPtrLock    sync.Mutex
+	funcPtrStore   = make(map[int64]funcEntry)
+	funcPtrClassID C.JSClassID
+)
 
 func init() {
 	C.JS_NewClassID(&funcPtrClassID)
@@ -88,7 +90,6 @@ func goAsyncProxy(ctx *C.JSContext, thisVal C.JSValueConst, argc C.int, argv *C.
 
 	result := entry.asyncFn(entry.ctx, Value{ctx: entry.ctx, ref: thisVal}, promise, args[1:])
 	return result.ref
-
 }
 
 //export goInterruptHandler
@@ -100,4 +101,20 @@ func goInterruptHandler(rt *C.JSRuntime, handlerArgs unsafe.Pointer) C.int {
 	// defer hFn.Delete()
 
 	return C.int(hFnValue())
+}
+
+//export goGetModule
+func goGetModule(ctxr *C.JSContext, bufLen *C.size_t, name *C.cchar_t) *C.char {
+	moduleName := C.GoString(name)
+	ctx, ok := contexts[ctxr]
+	if !ok {
+		return nil
+	}
+
+	data := ctx.modules[moduleName]
+
+	buf := (*C.char)(C.CBytes(data))
+	*bufLen = (C.size_t)(len(data))
+
+	return buf
 }

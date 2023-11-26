@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "quickjs.h"
-#include "quickjs-libc.h"
 
 extern JSValue JS_NewNull();
 extern JSValue JS_NewUndefined();
@@ -23,3 +22,5 @@ typedef struct {
 
 extern void SetInterruptHandler(JSRuntime *rt, void *handlerArgs);
 extern void SetModuleLoader(JSRuntime *rt);
+
+typedef const char cchar_t;
