@@ -106,7 +106,9 @@ func goInterruptHandler(rt *C.JSRuntime, handlerArgs unsafe.Pointer) C.int {
 //export goGetModule
 func goGetModule(ctxr *C.JSContext, bufLen *C.size_t, name *C.cchar_t) *C.char {
 	moduleName := C.GoString(name)
+	lock.RLock()
 	ctx, ok := contexts[ctxr]
+	lock.RUnlock()
 	if !ok {
 		return nil
 	}

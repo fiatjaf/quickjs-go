@@ -61,7 +61,9 @@ func (r Runtime) NewContext() *Context {
 	C.JS_EnableBignumExt(ref, C.int(1))
 
 	ctx := &Context{ref: ref, runtime: &r, modules: make(map[string][]byte)}
+	lock.Lock()
 	contexts[ref] = ctx
+	lock.Unlock()
 
 	return ctx
 }

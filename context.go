@@ -3,6 +3,7 @@ package quickjs
 import (
 	"fmt"
 	"runtime/cgo"
+	"sync"
 	"unsafe"
 )
 
@@ -22,7 +23,10 @@ type Context struct {
 	modules    map[string][]byte
 }
 
-var contexts = make(map[*C.JSContext]*Context)
+var (
+	contexts = make(map[*C.JSContext]*Context)
+	lock     = sync.RWMutex{}
+)
 
 // Free will free context and all associated objects.
 func (ctx *Context) Close() {
@@ -39,7 +43,9 @@ func (ctx *Context) Close() {
 	}
 
 	C.JS_FreeContext(ctx.ref)
+	lock.Lock()
 	delete(contexts, ctx.ref)
+	lock.Unlock()
 }
 
 // Null return a null value.
